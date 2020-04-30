@@ -1,9 +1,19 @@
 import * as c from './../actions/ActionTypes';
-
+//Action creators -------------
 export const deleteTicket = id => ({
   type: c.DELETE_TICKET,
   id
 });
+
+export const selectTicket = id => ({
+  type: c.SELECT_TICKET,
+  id
+});
+
+// export const deselectTicket = id => ({
+//   type: c.SELECT_TICKET,
+//   id
+// });
 
 export const toggleForm = () => ({
   type: c.TOGGLE_FORM
@@ -23,3 +33,4 @@ export const addTicket = (ticket) => {
     id: id
   }
 }
+

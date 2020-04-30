@@ -13,7 +13,7 @@ class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTicket: null,
+      // selectedTicket: null,
       // editing: false
     };
   }
@@ -22,7 +22,9 @@ class TicketControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.toggleForm();
     dispatch(action);
-    this.setState({selectedTicket: null});
+    const action2 = a.selectTicket(null);
+    dispatch(action2);
+    // this.setState({selectedTicket: null});
   }
 
   handleAddingNewTicketToList = (newTicket) => {
@@ -34,15 +36,20 @@ class TicketControl extends React.Component {
   }
 
   handleChangingSelectedTicket = (id) => {
-    const selectedTicket = this.props.masterTicketList[id];
-    this.setState({selectedTicket: selectedTicket});
+    const { dispatch } = this.props;
+    // const selectedTicket = this.props.masterTicketList[id];
+    const action = a.selectTicket(id);
+    dispatch(action);
+    // this.setState({selectedTicket: selectedTicket});
   }
 
   handleDeletingTicket = (id) => {
     const { dispatch } = this.props;
     const action = a.deleteTicket(id);
     dispatch(action);
-    this.setState({selectedTicket: null});
+    const action2 = a.selectTicket(null);
+    dispatch(action2);
+    // this.setState({selectedTicket: null});
   }
 
   handleEditClick = () => {
@@ -58,22 +65,24 @@ class TicketControl extends React.Component {
     dispatch(action);
     const action2 = a.editClick();
     dispatch(action2);
-    this.setState({
-      // editing: false,
-      selectedTicket: null
-    });
+    const action3 = a.selectTicket(null);
+    dispatch(action3);
+    // this.setState({
+    //   // editing: false,
+    //   selectedTicket: null
+    // });
   }
 
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
     if (this.props.editing ) {      
-      currentlyVisibleState = <EditTicketForm ticket = {this.state.selectedTicket} onEditTicket = {this.handleEditingTicketInList} />
+      currentlyVisibleState = <EditTicketForm ticket = {this.props.selectedTicket} onEditTicket = {this.handleEditingTicketInList} />
       buttonText = "Return to Ticket List";
-    } else if (this.state.selectedTicket != null) {
+    } else if (this.props.selectedTicket != null) {
       currentlyVisibleState = 
       <TicketDetail 
-        ticket = {this.state.selectedTicket} 
+        ticket = {this.props.selectedTicket} 
         onClickingDelete = {this.handleDeletingTicket} 
         onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Ticket List";
@@ -101,7 +110,8 @@ const mapStateToProps = state => {
   return {
     masterTicketList: state.masterTicketList,
     formVisibleOnPage: state.formVisibleOnPage,
-    editing: state.editing
+    editing: state.editing,
+    selectedTicket: state.selectedTicket
   }
 }
 

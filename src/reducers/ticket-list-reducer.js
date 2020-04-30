@@ -1,6 +1,4 @@
 import * as c from './../actions/ActionTypes';
-
-
 export default (state = {}, action) => {
   const { names, location, issue, id } = action;
   switch (action.type) {
@@ -13,6 +11,7 @@ export default (state = {}, action) => {
         id: id
       }
     });
+
   case c.DELETE_TICKET:
     const newState = { ...state };
     delete newState[id];
@@ -20,4 +19,5 @@ export default (state = {}, action) => {
   default:
     return state;
   }
+
 };

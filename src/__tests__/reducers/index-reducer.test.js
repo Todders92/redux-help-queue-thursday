@@ -3,6 +3,7 @@ import { createStore } from 'redux';
 import formVisibleReducer from '../../reducers/form-visible-reducer';
 import ticketListReducer from '../../reducers/ticket-list-reducer';
 import * as c from '../../actions/ActionTypes';
+import selectTicketReducer from '../../reducers/select-ticket-reducer';
 
 let store = createStore(rootReducer);
 
@@ -12,7 +13,8 @@ describe("rootReducer", () => {
     expect(rootReducer({}, { type: null })).toEqual({
       masterTicketList: {},
       formVisibleOnPage: false,
-      editing: false
+      editing: false,
+      selectedTicket: null
     });
   });
 
