@@ -114,7 +114,6 @@ class TicketControl extends React.Component {
       </React.Fragment>
     );
   }
-
 }
 
 TicketControl.propTypes = {
