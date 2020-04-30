@@ -5,15 +5,20 @@ export const deleteTicket = id => ({
   id
 });
 
-export const selectTicket = id => ({
-  type: c.SELECT_TICKET,
-  id
-});
+export const selectTicket = id => {
+  // const { id } = id;
+  return {
+    type: c.SELECT_TICKET,
+    // names: names,
+    // location: location,
+    // issue: issue,
+    id: id
+  }
+};
 
-// export const deselectTicket = id => ({
-//   type: c.SELECT_TICKET,
-//   id
-// });
+export const deselectTicket = () => ({
+  type: c.DESELECT_TICKET,
+});
 
 export const toggleForm = () => ({
   type: c.TOGGLE_FORM

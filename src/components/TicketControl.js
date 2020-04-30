@@ -22,7 +22,7 @@ class TicketControl extends React.Component {
     const { dispatch } = this.props;
     const action = a.toggleForm();
     dispatch(action);
-    const action2 = a.selectTicket(null);
+    const action2 = a.deselectTicket();
     dispatch(action2);
     // this.setState({selectedTicket: null});
   }
@@ -37,26 +37,22 @@ class TicketControl extends React.Component {
 
   handleChangingSelectedTicket = (id) => {
     const { dispatch } = this.props;
-    // const selectedTicket = this.props.masterTicketList[id];
     const action = a.selectTicket(id);
     dispatch(action);
-    // this.setState({selectedTicket: selectedTicket});
   }
 
   handleDeletingTicket = (id) => {
     const { dispatch } = this.props;
     const action = a.deleteTicket(id);
     dispatch(action);
-    const action2 = a.selectTicket(null);
+    const action2 = a.deselectTicket();
     dispatch(action2);
-    // this.setState({selectedTicket: null});
   }
 
   handleEditClick = () => {
     const { dispatch } = this.props;
     const action = a.editClick();
     dispatch(action);
-    // this.setState({editing: true});
   }
 
   handleEditingTicketInList = (ticketToEdit) => {
@@ -65,12 +61,8 @@ class TicketControl extends React.Component {
     dispatch(action);
     const action2 = a.editClick();
     dispatch(action2);
-    const action3 = a.selectTicket(null);
+    const action3 = a.deselectTicket();
     dispatch(action3);
-    // this.setState({
-    //   // editing: false,
-    //   selectedTicket: null
-    // });
   }
 
   render(){
