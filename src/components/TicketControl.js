@@ -13,9 +13,8 @@ class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       selectedTicket: null,
-      editing: false
+      // editing: false
     };
   }
 
@@ -47,15 +46,20 @@ class TicketControl extends React.Component {
   }
 
   handleEditClick = () => {
-    this.setState({editing: true});
+    const { dispatch } = this.props;
+    const action = a.editClick();
+    dispatch(action);
+    // this.setState({editing: true});
   }
 
   handleEditingTicketInList = (ticketToEdit) => {
     const { dispatch } = this.props;
     const action = a.addTicket(ticketToEdit);
     dispatch(action);
+    const action2 = a.editClick();
+    dispatch(action2);
     this.setState({
-      editing: false,
+      // editing: false,
       selectedTicket: null
     });
   }
@@ -63,7 +67,7 @@ class TicketControl extends React.Component {
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
-    if (this.state.editing ) {      
+    if (this.props.editing ) {      
       currentlyVisibleState = <EditTicketForm ticket = {this.state.selectedTicket} onEditTicket = {this.handleEditingTicketInList} />
       buttonText = "Return to Ticket List";
     } else if (this.state.selectedTicket != null) {
@@ -96,7 +100,8 @@ TicketControl.propTypes = {
 const mapStateToProps = state => {
   return {
     masterTicketList: state.masterTicketList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    editing: state.editing
   }
 }
 

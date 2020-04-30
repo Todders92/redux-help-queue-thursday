@@ -9,6 +9,10 @@ export const toggleForm = () => ({
   type: c.TOGGLE_FORM
 });
 
+export const editClick = () => ({
+  type: c.EDIT_CLICK
+})
+
 export const addTicket = (ticket) => {
   const { names, location, issue, id } = ticket;
   return {
