@@ -7,7 +7,7 @@ export default (state = null, action) => {
   case c.SELECT_TICKET:  
     const newState = { ...state };
     return newState[id];
-    
+
   case c.DESELECT_TICKET:
     return null;
   default:
