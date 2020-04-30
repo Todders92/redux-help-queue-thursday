@@ -35,6 +35,7 @@ describe('ticketListReducer', () => {
       issue: issue,
       id: id
     };
+
     expect(ticketListReducer({}, action)).toEqual({
       [id] : {
         names: names,
@@ -43,6 +44,7 @@ describe('ticketListReducer', () => {
         id: id
       }
     });
+    
   });
 
   test('Should successfully delete a ticket', () => {
